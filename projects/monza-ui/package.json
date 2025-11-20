@@ -1,6 +1,10 @@
 {
-  "name": "monza-ui",
+  "name": "@monza/monza-ui",
   "version": "0.0.1",
+  "description": "Monza UI component library for Angular",
+  "author": "thecodemeor",
+  "license": "MIT",
+  "keywords": ["angular", "ui", "components", "monza"],
   "peerDependencies": {
     "@angular/common": "^20.3.0",
     "@angular/core": "^20.3.0"
