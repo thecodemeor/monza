@@ -1,0 +1,18 @@
+<button
+    type="button"
+    class="mon-switch"
+    [attr.aria-checked]="checked"
+    [disabled]="disabled"
+    (click)="toggle()"
+    (blur)="onTouched()"
+    [style.--mon-switch-color]="
+        color === 'primary' ? 'var(--mon-color-primary)' :
+        color === 'success' ? 'var(--mon-color-success)' :
+        color === 'warn'    ? 'var(--mon-color-warning)' :
+        color === 'danger'  ? 'var(--mon-color-danger)' :
+                            'var(--mon-color-text)'
+    ">
+    <span class="mon-switch__track">
+        <span class="mon-switch__thumb"></span>
+    </span>
+</button>

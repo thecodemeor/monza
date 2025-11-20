@@ -1,0 +1,37 @@
+@use "styles" as mon;
+
+:host {
+    --mon-badge-background: var(--mon-color-primary-mute);
+    display: flex;
+    height: 1.2rem;
+    align-items: center;
+}
+
+.mon-badge {
+    display: inline-flex;
+    height: 1.2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    color: white;
+    border-radius: var(--mon-radius-pill);
+    background-color: var(--mon-badge-background);
+    align-items: center;
+    gap: 0.25rem;
+
+    /* Dot style */
+    &--dot {
+        width: .5rem; height: .5rem;
+        min-width: .5rem; min-height: .5rem;
+        padding: 0;
+        font-size: 0;
+    }
+    &--pulsar {
+        animation: pulsar 1.2s infinite ease-out;
+        @keyframes pulsar {
+            0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--mon-badge-background) 80%, white);}
+            100% { box-shadow: 0 0 0 0.4rem color-mix(in srgb, var(--mon-badge-background) 0%, transparent);}
+        }
+    }
+}

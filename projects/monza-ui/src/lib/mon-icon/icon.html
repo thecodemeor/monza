@@ -1,0 +1,10 @@
+<!-- Hidden slot to capture projected text like: <mon-icon>home</mon-icon> -->
+<span #slot style="display:none"><ng-content></ng-content></span>
+
+<!-- Visible SVG container -->
+<span
+    class="mon-icon"
+    [style.--mon-icon-color]="colorVar"
+    [style.--mon-icon-size]="iconSize"
+    [innerHTML]="safeSvg">
+</span>

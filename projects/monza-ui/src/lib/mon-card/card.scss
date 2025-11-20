@@ -1,0 +1,168 @@
+@use "styles" as mon;
+
+:host {
+    --mon-card-bg: var(--mon-color-surface, #fff);
+    --mon-card-corner: var(--mon-radius-lg);
+    --mon-card-border-size: 0.1rem;
+    --mon-color-border-glassmorphism: #e3e3e3;
+    --mon-card-gap: var(--mon-space-1);
+
+    display: flex;
+    min-width: 10rem; min-height: 5rem;
+    padding: 0;
+    border-radius: var(--mon-card-corner);
+    background: var(--mon-card-bg);
+    flex-direction: column;
+    overflow: hidden;
+    gap: 0;
+
+    ::-webkit-scrollbar { width: 3px; height: 80%;}
+    ::-webkit-scrollbar-track { background: transparent;}
+    ::-webkit-scrollbar-thumb { border-radius: 1.5px; background: #888;}
+    ::-webkit-scrollbar-thumb:hover { background: #555;}
+
+
+    /* Model Styles */
+    &.mon-card-fill {
+        border: none;
+        background: color-mix(in srgb, var(--mon-card-bg, var(--mon-color-primary)) 15%, white);
+    }
+    &.mon-card-outline {
+        border: solid var(--mon-card-border-size) color-mix(in srgb, var(--mon-card-bg, var(--mon-color-primary))  var(--mon-fade-border), white);
+        background: var(--mon-color-surface);
+    }
+    &.mon-card-elevated {
+        border: none;
+        background: var(--mon-color-surface);
+        @include mon.root-shadow(2)
+    }
+    &.mon-card-flavor {
+        border: solid var(--mon-card-border-size) color-mix(in srgb, var(--mon-card-bg, var(--mon-color-primary))  var(--mon-fade-border), white);
+        background: color-mix(in srgb, var(--mon-card-bg, var(--mon-color-primary)) var(--mon-card-bg-contrast), white);
+    }
+    &.mon-card-glass {
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur( 50px ); // frosted blur
+        -webkit-backdrop-filter: blur( 50px ); // for Safari
+        border: solid var(--mon-button-border-size) var(--mon-color-border-glassmorphism);
+    }
+
+    &.mon-card-advancing {
+        padding: var(--mon-card-gap);
+        gap: var(--mon-card-gap);
+    }
+}
+
+/* ---------------------------
+   Card Content Styles
+--------------------------- */
+mon-card-media,
+mon-card-header,
+mon-card-body,
+mon-card-footer,
+mon-card-header-actions { display: contents; }
+
+.mon-card-media, .mon-card-media img, .mon-card-media video {
+    display: block;
+    width: 100%; height: auto;
+}
+
+.mon-card-header {
+    display: flex;
+    width: 100%; height: fit-content;
+    padding: var(--mon-space-2) var(--mon-space-2) var(--mon-space-1);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    &--fill {
+        padding: var(--mon-space-1) var(--mon-space-2);
+        background: var(--mon-color-surface);
+        border-radius: var(--mon-radius-default) var(--mon-radius-default) var(--mon-radius-sm) var(--mon-radius-sm);
+    }
+    &--flavor {
+        padding: var(--mon-space-1) var(--mon-space-2);
+        background: var(--mon-color-surface);
+        border-radius: calc(var(--mon-card-corner) - var(--mon-card-gap)) calc(var(--mon-card-corner) - var(--mon-card-gap)) var(--mon-radius-default) var(--mon-radius-default);
+    }
+    
+    // Font Styles
+    @include mon.mon-typography('label-md');
+
+    .mon-card-header-actions {
+        display: flex;
+        align-items: center;
+        gap: var(--mon-space-1);
+    }
+}
+.mon-card-body {
+    flex: 1 1 auto;
+    display: block;
+    width: 100%; height: auto;
+    padding: var(--mon-space-1) var(--mon-space-2);
+    overflow: auto;
+
+    &--fill {
+        background: var(--mon-color-surface);
+        border-radius: var(--mon-radius-sm);
+    }
+
+    &--flavor {
+        background: var(--mon-color-surface);
+        border-radius: var(--mon-radius-default);
+        box-shadow: 0 0 0 var(--mon-card-border-size) color-mix(in srgb, var(--mon-color-default) 10%, white);
+    }
+}
+.mon-card-content {
+    flex: 1 1 auto;
+    display: block;
+    width: 100%; height: auto;
+    padding: var(--mon-space-1) 0;
+}
+.mon-card-footer {
+    display: flex;
+    width: 100%; height: fit-content;
+    padding: var(--mon-space-1) var(--mon-space-2);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+    // Font Styles
+    color: color-mix(in srgb, var(--mon-color-text) 60%, white);
+    @include mon.mon-typography('footer');
+
+    &--fill {
+        padding: var(--mon-space-1) var(--mon-space-2);
+        background: var(--mon-color-surface);
+        border-radius: var(--mon-radius-sm) var(--mon-radius-sm) var(--mon-radius-default) var(--mon-radius-default);
+    }
+}
+.mon-card-media:empty,
+.mon-card-header:empty,
+.mon-card-header:has(> .mon-card-header-actions:empty):not(:has(> *:not(.mon-card-header-actions))),
+.mon-card-body:empty,
+.mon-card-content:empty,
+.mon-card-footer:empty,
+.mon-card-footer:has(> .mon-card-footer-actions:empty):not(:has(> *:not(.mon-card-footer-actions))),
+.mon-card-badges:empty {
+    display: none !important;
+}
+
+/* ---------------------------
+   Skeleton Loading Styles
+--------------------------- */
+.mon-card-skeleton {
+    display: flex;
+    padding: var(--mon-space-2);
+    flex-direction: column;
+    gap: var(--mon-space-1);
+
+    .sk-line {
+        width: 100%; height: 1rem;
+        border-radius: var(--mon-radius-pill);
+        background: linear-gradient(90deg, rgba(0,0,0,.06), rgba(0,0,0,.02), rgba(0,0,0,.06));
+        background-size: 200% 100%; animation: sk 1.2s ease-in-out infinite;
+    }
+    .sk-title { width: 60%; height: 1.5rem;}
+    @keyframes sk { 0% { background-position: 200% 0; } 100% { background-position: -200% 0;}}
+}

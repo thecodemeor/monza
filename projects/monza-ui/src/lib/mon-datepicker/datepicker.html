@@ -1,0 +1,150 @@
+<div class="mon-datepicker"
+    [ngClass]="modelClass"
+    [class.mon-date-input--disabled]="disabled">
+
+    <!-- top label -->
+    @if (label) {
+        <div class="mon-datepicker__label">{{ label }}</div>
+    }
+
+    <!-- trigger -->
+    <button
+        #trigger
+        type="button"
+        class="mon-datepicker__trigger"
+        [class.focus]="open"
+        [attr.aria-expanded]="open"
+        [disabled]="disabled"
+        (click)="togglePanel($event)">
+        <span class="mon-datepicker__value">{{ displayValue | date:'dd MMM yyyy' }}</span>
+        <mon-icon>calendar</mon-icon>
+    </button>
+
+    @if (open) {
+        <div class="mon-datepicker__backdrop"></div>
+    }
+
+    <!-- Dropdown calendar -->
+    <div
+        id="dropdown"
+        class="mon-datepicker__panel"
+        [class.dropdown]="open"
+        tabindex="-1">
+        <div class="mon-calendar">
+            <!-- Header (month / year pickers) -->
+            <header class="mon-calendar-header">
+                <mon-button
+                    class="mon-calendar-header-pick_month"
+                    model="text"
+                    (click)="setView('month')">
+                    {{ selectedMonth }}
+                </mon-button>
+
+                <div class="mon-calendar-header-pick_year"
+                    (click)="setView('year')"
+                    aria-label="Pick year">
+                    <div class="mon-calendar-header-card"></div>
+                    <span class="mon-calendar-header-year_label">{{ selectedYear }}</span>
+                </div>
+            </header>
+
+            @if (viewMode === 'date') {
+                <!-- Month navigation -->
+                <div class="mon-calendar-month_nav">
+                    <mon-button-icon (click)="prevMonth()" aria-label="Previous month">
+                        <mon-icon>arrow_chevron_left</mon-icon>
+                    </mon-button-icon>
+
+                    <div class="mon-calendar-month_nav-label">
+                        {{ selectedMonth }} {{ viewYear }}
+                    </div>
+
+                    <mon-button-icon (click)="nextMonth()" aria-label="Next month">
+                        <mon-icon>arrow_chevron_right</mon-icon>
+                    </mon-button-icon>
+                </div>
+
+                <!-- Weekday labels -->
+                <div class="mon-calendar-weekdays">
+                    @for (label of weekdayLabels; track $index) {
+                        <h6>{{ label }}</h6>
+                    }
+                </div>
+
+                <!-- Calendar grid (days) -->
+                <div class="mon-calendar-days">
+                    @for (cell of calendarCells; track $index) {
+                        <button
+                            type="button"
+                            class="mon-calendar-days-cell"
+                            [class.mon-calendar-days-cell--outside]="!cell.inCurrentMonth"
+                            [class.mon-calendar-days-cell--today]="cell.isToday"
+                            [class.mon-calendar-days-cell--selected]="cell.isSelected"
+                            [disabled]="cell.disabled"
+                            (click)="onSelectCell(cell)" >
+                            <span>{{ cell.date.getDate() }}</span>
+                        </button>
+                    }
+                </div>
+            } @else if (viewMode === 'month') {
+                <div class="mon-calendar-months">
+                    @for (m of monthCells; track $index) {
+                        <mon-button
+                            [model]="m.index === viewMonth ? 'fill' : 'tonal'"
+                            (click)="onMonthCellClick(m)"
+                            color="primary"
+                            full
+                        >
+                            {{ m.label }}
+                        </mon-button>
+                    }
+                </div>
+            } @else if (viewMode === 'year') {
+                <!-- <div class="mon-calendar-years">
+                    @for (y of yearCells; track $index) {
+                        <mon-button
+                            [model]="y.year === viewYear ? 'fill' : 'tonal'"
+                            (click)="onYearCellClick(y)"
+                            color="primary"
+                            full
+                        >
+                            {{ y.year }}
+                        </mon-button>
+                    }
+                </div> -->
+
+                <div class="mon-calendar-year_nav">
+                    <mon-button-icon
+                    (click)="prevYearPage()"
+                    aria-label="Previous years">
+                        <mon-icon>arrow_chevron_left</mon-icon>
+                    </mon-button-icon>
+
+                    <div class="mon-calendar-year_nav-label">
+                        {{ yearPageStart }} - {{ yearPageStart + yearPageSize - 1 }}
+                    </div>
+
+                    <mon-button-icon
+                    (click)="nextYearPage()"
+                    aria-label="Next years">
+                        <mon-icon>arrow_chevron_right</mon-icon>
+                    </mon-button-icon>
+                </div>
+
+                <div class="mon-calendar-years">
+                    @for (y of yearCells; track $index) {
+                        <mon-button
+                            [model]="y.year === viewYear ? 'fill' : 'tonal'"
+                            (click)="onYearCellClick(y)"
+                            color="primary"
+                            full
+                        >
+                            {{ y.year }}
+                        </mon-button>
+                    }
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

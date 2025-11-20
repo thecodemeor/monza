@@ -1,0 +1,139 @@
+@use "styles" as mon;
+
+:host {
+    --mon-input-border-size: 0.1rem;
+    --mon-input-outline-size: 0.2rem;
+
+    display: inline-flex;
+    width: 15rem;
+    padding: 0 var(--mon-input-outline-size);
+    flex-direction: column;
+    &.disabled {
+        opacity: .5;
+        filter: grayscale(100);
+        cursor: unset;
+    }
+}
+
+/* Root */
+.mon-input {
+    --mon-input-gap: var(--mon-space-1);
+    --mon-input-px: var(--mon-space-3);
+    --mon-input-corner: var(--mon-radius-default);
+
+    position: relative;
+    width: 100%;
+
+    /* top label */
+    &__label {
+        margin: 0 0 0.2rem var(--mon-space-3);
+        font-weight: var(--mon-font-weight-medium);
+        color: color-mix(in srgb, var(--mon-color-text) 80%, white);
+        @include mon.mon-typography('label-sm');
+    }
+
+    /* control row */
+    &__control {
+        position: relative;
+        display: grid;
+        min-height: 2.5rem;
+        padding: 0 0.3rem 0 var(--mon-input-px);
+        border-radius: var(--mon-input-corner);
+        background: var(--mon-color-surface);
+
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        column-gap: var(--mon-input-gap);
+        transition: all var(--mon-duration) var(--mon-ease);
+
+        &[data-disabled="true"] {
+            opacity: .5;
+            filter: grayscale(100);
+            cursor: unset;
+        }
+    }
+
+    /* model */
+    &.mon-input--fill {
+        .mon-input__native::placeholder {
+            color: color-mix(in srgb, var(--mon-color-primary) 80%, white);
+            opacity: 0.8;
+        }
+        .mon-input__control {
+            border: none !important;
+            background: color-mix(in srgb, var(--mon-color-primary) 10%, white);
+        }
+    }
+    &.mon-input--outline {
+        .mon-input__native::placeholder {
+            color: color-mix(in srgb, var(--mon-color-text)  var(--mon-fade-placeholder), white);
+            opacity: 0.8;
+        }
+        .mon-input__control {
+            @include mon.root-border();
+            background: var(--mon-color-surface);
+        }
+    }
+
+    &.is-errored .mon-input__control {
+        border: solid calc(var(--mon-input-border-size) + 0.05rem) var(--mon-color-danger);
+        outline: solid var(--mon-input-outline-size) color-mix(in srgb, var(--mon-color-danger) 30%, white);
+        background: color-mix(in srgb, var(--mon-color-danger) 10%, white);
+    }
+
+    /* focus ring */
+    &__native:focus-visible + .mon-input__clear,
+    &__native:focus-visible ~ .mon-input__toggle { visibility: visible;}
+    &__native:focus-visible {
+        visibility: visible;
+    }
+    &__control:focus-within {
+        border: solid var(--mon-input-border-size) var(--mon-color-primary) !important;
+        outline: solid var(--mon-input-outline-size) color-mix(in srgb, var(--mon-color-primary)  var(--mon-fade-outline), white);
+    }
+
+    /* input */
+    &__native {
+        width: 100%;
+        padding: 0.3rem 0;
+        border: none;
+        background: transparent;
+        color: var(--mon-color-text);
+        outline: none;
+        @include mon.mon-typography(default);
+    }
+
+    /* prefix / suffix slots */
+    &__prefix,
+    &__suffix {
+        display: inline-flex;
+        align-items: center;
+        color: var(--mon-color-text);
+    }
+
+    /* action buttons */
+    &__clear,
+    &__toggle {
+        border: 0;
+        background: transparent;
+        padding: .25rem;
+        border-radius: calc(var(--mon-input-corner) - .4rem);
+        @include mon.root-button();
+    }
+    &__clear:hover,
+    &__toggle:hover {
+        background: color-mix(in srgb, var(--mon-color-text) 8%, transparent);
+    }
+
+    /* helper line */
+    &__help {
+        position: absolute;
+        bottom: calc((1rem + 0.2rem) * -1); left: var(--mon-space-3);
+        min-height: 1rem;
+        color: color-mix(in srgb, var(--mon-color-text) 70%, white);
+        @include mon.mon-typography('footer');
+    }
+    &.is-errored &__help {
+        color: var(--mon-color-danger);
+    }
+}

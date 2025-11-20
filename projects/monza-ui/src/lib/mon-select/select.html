@@ -1,0 +1,49 @@
+<div class="mon-select"
+    [ngClass]="modelClass"
+    [class.is-errored]="isErrored">
+
+    <!-- top label -->
+    @if (label) {
+        <div class="mon-select__label">{{ label }}</div>
+    }
+
+    <!-- trigger -->
+    <button
+        #trigger
+        type="button"
+        class="mon-select__trigger"
+        [class.focus]="open"
+        [attr.aria-expanded]="open"
+        [disabled]="disabled"
+        (click)="togglePanel()">
+        <span class="mon-select__value" [class.placeholder]="displayLabel === ''">
+            {{ displayLabel || placeholder }}
+        </span>
+        <mon-icon [style.rotate]="open ? '-180deg' : '0deg'">arrow_chevron_down</mon-icon>
+    </button>
+
+    <!-- helper / error -->
+    <div class="mon-select__help">
+        @if (isErrored) { {{ error }} }
+    </div>
+
+    <!-- menu -->
+    <div
+        id="dropdown"
+        class="mon-select__panel"
+        [class.dropdown]="open"
+        tabindex="-1"
+        role="listbox">
+        @for (opt of options; track $index) {
+            <div class="mon-select__option"
+                [class.is-disabled]="opt.disabled"
+                [class.is-selected]="isSelected(opt)"
+                (click)="selectOption(opt)">
+                {{ opt.label }}
+            </div>
+        }
+        @if (!options.length) {
+            <div class="mon-select__option is-disabled">No options</div>
+        }
+    </div>
+</div>

@@ -1,0 +1,98 @@
+@use "styles" as mon;
+
+:host {
+    display: inline-block;
+}
+
+.mon-radio {
+    --mon-radio-size: 1.15rem;
+    --mon-radio-color: var(--mon-color-text);
+
+    display: inline-flex;
+    align-items: center;
+    gap: var(--mon-space-2);
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+
+    &--start {
+        flex-direction: row-reverse;
+    }
+
+    &--disabled {
+        opacity: 0.5;
+        filter: grayscale(100);
+        cursor: unset;
+    }
+}
+
+.mon-radio__input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.mon-radio__control {
+    width: var(--mon-radio-size);
+    height: var(--mon-radio-size);
+    display: inline-grid;
+    place-items: center;
+    border-radius: 50%;
+    position: relative;
+    transition: transform var(--mon-duration) var(--mon-ease);
+}
+
+.mon-radio__svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* SVG parts */
+.ring {
+    stroke: color-mix(in srgb, var(--mon-radio-color) 60%, white);
+    transition: stroke var(--mon-duration) var(--mon-ease);
+}
+
+.dot {
+    fill: transparent;
+    transform-origin: center;
+    transform: scale(0);
+    transition:
+        transform var(--mon-duration-slow, 400ms) var(--mon-ease),
+        fill var(--mon-duration) var(--mon-ease);
+}
+
+/* Focus ring (keyboard) */
+:host(:focus-visible) .mon-radio__control {
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.35);
+}
+
+/* Checked state */
+.mon-radio__input:checked + .mon-radio__control .ring {
+    stroke: var(--mon-radio-color);
+}
+
+.mon-radio__input:checked + .mon-radio__control .dot {
+    fill: var(--mon-radio-color);
+    transform: scale(1);
+}
+
+/* Hover feedback */
+.mon-radio:not(.mon-radio--disabled):hover .ring {
+    stroke: color-mix(in srgb, var(--mon-radio-color)  var(--mon-fade-border), white);
+}
+
+/* Label */
+.mon-radio__label {
+    color: var(--mon-color-text);
+    @include mon.mon-typography('default');
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .dot {
+        transition: none;
+    }
+}

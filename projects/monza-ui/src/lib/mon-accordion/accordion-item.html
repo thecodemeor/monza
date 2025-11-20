@@ -1,0 +1,31 @@
+<!-- Header button: uses projected [monAccordionHeader] as label -->
+<button
+    type="button"
+    class="mon-accordion-item__header"
+    [attr.aria-expanded]="expanded"
+    [attr.aria-controls]="panelId"
+    [disabled]="disabled"
+    (click)="onHeaderClick()"
+    (keydown)="onHeaderKeydown($event)"
+>
+    <span class="mon-accordion-item__header-label">
+        <!-- Any element with the monAccordionHeader attribute -->
+        <ng-content select="[monAccordionHeader]"></ng-content>
+    </span>
+
+    <span class="mon-accordion-item__header-chevron">
+        <mon-icon>arrow_chevron_down</mon-icon>
+    </span>
+</button>
+
+<!-- Panel body: everything that is NOT [monAccordionHeader] -->
+<div
+    class="mon-accordion-item__panel"
+    [attr.id]="panelId"
+    [style.maxHeight]="expanded ? '1000px' : '0'"
+    [class.mon-accordion-item__panel--expanded]="expanded"
+>
+    <div class="mon-accordion-item__panel-inner">
+        <ng-content></ng-content>
+    </div>
+</div>

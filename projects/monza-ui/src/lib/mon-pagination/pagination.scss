@@ -1,0 +1,121 @@
+@use "styles" as mon;
+
+:host {
+    display: inline-flex;
+    width: 100%;
+    justify-content: flex-end;
+    font-family: inherit;
+}
+
+.mon-pagination {
+    display: inline-flex;
+    height: 2rem;
+    align-items: center;
+    gap: var(--mon-space-3);
+    padding: 0;
+    color: var(--mon-color-text);
+    @include mon.mon-typography('footer');
+
+    &__page-size {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--mon-space-1);
+    }
+
+    &__page-size-label {
+        color: color-mix(in srgb, var(--mon-color-text) 75%, white);
+    }
+
+    &__page-size-select {
+        min-width: 3.5rem;
+        padding: 0.1rem 0.4rem;
+        border-radius: var(--mon-radius-sm);
+        border: solid 1px var(--mon-color-border);
+        background: var(--mon-color-surface);
+        color: var(--mon-color-text);
+        @include mon.mon-typography('footer');
+    }
+
+    &__controls {
+        display: inline-flex;
+        height: 100%;
+        align-items: center;
+        gap: var(--mon-space-1);
+    }
+
+    &__btn {
+        @include mon.root-button();
+        display: inline-flex;
+        width: 2rem;
+        height: 2rem;
+        border-radius: var(--mon-radius-pill);
+        border: none;
+        justify-content: center;
+        align-items: center;
+        background: color-mix(in srgb, var(--mon-color-text) var(--mon-fade-hover), white);
+        cursor: pointer;
+        transition: all var(--mon-duration);
+
+        mon-icon {
+            display: block;
+        }
+
+        &:hover:not(:disabled) {
+            background: var(--mon-color-primary);
+            transition: all var(--mon-duration);
+            svg path {
+                stroke: var(--mon-color-surface);
+                transition: all var(--mon-duration);
+            }
+        }
+
+        &:disabled {
+            opacity: 0.35;
+            filter: grayscale(100);
+            cursor: default;
+        }
+    }
+
+    &__pages {
+        display: inline-flex;
+        height: 100%;
+        padding: 0.3rem;
+        border: color-mix(in srgb, var(--mon-color-text) var(--mon-fade-outline), white);
+        background: color-mix(in srgb, var(--mon-color-text) var(--mon-fade-hover), white);
+        border-radius: 1rem;
+        align-items: center;
+        gap: var(--mon-space-2);
+    }
+
+    &__page-btn {
+        @include mon.root-button();
+        display: flex;
+        height: 100%;
+        aspect-ratio: 1 / 1;
+        padding: 0 0.5rem;
+        color: var(--mon-color-text);
+        border: none;
+        background: transparent;
+        border-radius: var(--mon-radius-pill);
+        justify-content: center;
+        align-items: center;
+        transition: all var(--mon-duration);
+        cursor: pointer;
+        @include mon.mon-typography('footer');
+
+        &:hover {
+            color: var(--mon-color-primary);
+        }
+
+        &--active {
+            background: var(--mon-color-primary);
+            color: white;
+            font-weight: var(--mon-font-weight-semibold);
+        }
+    }
+
+    &__ellipsis {
+        padding: 0 0.4rem;
+        color: color-mix(in srgb, var(--mon-color-text) 60%, white);
+    }
+}

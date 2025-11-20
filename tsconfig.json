@@ -7,6 +7,14 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
+    "paths": {
+      "monza-styles": [
+        "./dist/monza-styles"
+      ],
+      "monza-ui": [
+        "./dist/monza-ui"
+      ]
+    },
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "isolatedModules": true,
@@ -22,5 +30,25 @@
     "typeCheckHostBindings": true,
     "strictTemplates": true
   },
-  "files": []
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/monza-styles/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/monza-styles/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/monza-ui/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/monza-ui/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/demo/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/demo/tsconfig.spec.json"
+    }
+  ]
 }

@@ -1,0 +1,66 @@
+// ============================================================================
+// Monza Global Styles
+// ============================================================================
+// This file serves as the main entry point for all global styles in the
+// Monza Design System or Angular application. It imports foundational layers
+// such as Reset, Tokens, and Mixins, then applies base element styles and
+// theme variables.
+//
+// Structure (import order matters):
+// 1. Reset    – Neutralizes browser defaults and sets the base foundation.
+// 2. Tokens   – Defines design tokens (color, spacing, typography, etc.).
+// 3. Mixins   – Provides reusable logic and utilities for consistent styling.
+// 4. Base     – Applies global element rules (html, body, headings, etc.).
+// 5. Components – Imports component-level SCSS (e.g., buttons, inputs).
+// 6. Utilities – Optional helpers for layout or spacing.
+//
+// Usage:
+// - This file is compiled once and linked globally (e.g., in Angular.json).
+// - Avoid putting component-specific styles here.
+// - Keep it limited to global imports, base theming, and shared layers.
+//
+// Example Import Structure:
+//   @use 'monza-styles/reset';
+//   @use 'monza-styles/tokens';
+//   @use 'monza-styles/mixins';
+//   @use 'monza-styles/base';
+//   @use 'monza-styles/components/button';
+//
+// Example Root Theme (optional):
+//   :root {
+//     --mon-color-primary: #0057ff;
+//     --mon-font-family: 'Inter', sans-serif;
+//     --mon-line-height: 1.6;
+//   }
+//
+// -----------------------------------------------------------------------------
+// Author: thecodemeor
+// Version: 1.0
+// -----------------------------------------------------------------------------
+
+/* Re-export APIs */
+@forward "tokens";
+@forward "utilities";
+
+/* Emit CSS */
+@use "tokens";
+@use "utilities";
+
+// ---------------------------------------------
+// Global Styles
+// ---------------------------------------------
+:root {
+    img, svg, video, canvas { display: block; width: auto; height: auto; max-width: 100%;}
+    input, button, textarea, select{ font: inherit;}
+
+}
+html, body {
+    width: 100%; height: 100%;
+    margin: 0; padding: 0;
+    background: var(--mon-color-bg);
+    font-family: var(--mon-font-family);
+    font-size: var(--mon-font-size);
+    line-height: var(--mon-line-height);
+    color: var(--mon-color-text);
+}
+*, *::before, *::after { box-sizing:border-box;}

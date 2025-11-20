@@ -1,0 +1,128 @@
+// ============================================================================
+// Monza Color System
+// ============================================================================
+// This file defines the core color tokens used across the Monza design system.
+// Each token represents a role-based color (e.g., primary, surface, text) rather
+// than a fixed hex value. This approach allows theme flexibility and easy
+// customization (e.g., light/dark themes or brand variants).
+//
+// Structure:
+// - Semantic Tokens: Colors defined by purpose (e.g., $color-primary, $color-error).
+// - Palette Tokens: Base palette values (e.g., $blue-500, $gray-100).
+// - Utility Tokens: Contrast and transparency utilities.
+//
+// Usage:
+// 1. Override palette or semantic tokens in your theme file to create variants.
+// 2. Reference semantic tokens inside components for consistent theming.
+//
+// Example:
+//   background-color: $color-surface;
+//   color: $color-on-surface;
+//
+// -----------------------------------------------------------------------------
+// Author: thecodemeor
+// Version: 1.0
+// -----------------------------------------------------------------------------
+
+
+$colors: (
+    red: (
+        50:  #fff0f0,
+        100: #ffdddd,
+        200: #ffc0c0,
+        300: #ff9494,
+        400: #ff5757,
+        500: #ff2323,
+        600: #ff0505, // main
+        700: #d70000,
+        800: #b10303,
+        900: #920a0a,
+        950: #500000,
+    ),
+
+    rose: (
+        50:  #fff0f9,
+        100: #ffe3f6,
+        200: #ffc6ee,
+        300: #ff98de,
+        400: #ff58c6,
+        500: #ff27ac,
+        600: #ff058a, // main
+        700: #df006b,
+        800: #b80058,
+        900: #98034c,
+        950: #5f0029,
+    ),
+
+    violet: (
+        50:  #f3f0ff,
+        100: #eae4ff,
+        200: #d8cdff,
+        300: #bca6ff,
+        400: #9c73ff,
+        500: #803bff,
+        600: #7414ff,
+        700: #6905ff, // main
+        800: #5601d6,
+        900: #4803af,
+        950: #2a0077,
+    ),
+
+    malibu: (
+        50:  #eff9ff,
+        100: #dff2ff,
+        200: #b8e8ff,
+        300: #78d6ff,
+        400: #3dc5ff, // main
+        500: #06aaf1,
+        600: #0088ce,
+        700: #006ca7,
+        800: #025b8a,
+        900: #084c72,
+        950: #06304b,
+    ),
+
+    chartreuse: (
+        50:  #f4ffe4,
+        100: #e4ffc4,
+        200: #cbff90,
+        300: #a6ff50,
+        400: #76ff03, // main
+        500: #63e600,
+        600: #4bb800,
+        700: #388b00,
+        800: #2f6d07,
+        900: #2a5c0b,
+        950: #113400,
+    ),
+
+    amber: (
+        50:  #ffffea,
+        100: #fffbc5,
+        200: #fff885,
+        300: #ffed46,
+        400: #ffdf1b,
+        500: #ffbf00, // main
+        600: #e29300,
+        700: #bb6802,
+        800: #985008,
+        900: #7c420b,
+        950: #482200,
+    ),
+
+    // === Gray Scale ============ //
+    silver: (
+        50:  #f7f7f7,
+        100: #f0f0f0,
+        200: #e3e3e3,
+        300: #d1d1d1,
+        400: #c2c2c2,
+        500: #aaaaaa,
+        600: #969696,
+        700: #818181,
+        800: #6a6a6a,
+        900: #585858,
+        950: #333333,
+    ),
+
+)

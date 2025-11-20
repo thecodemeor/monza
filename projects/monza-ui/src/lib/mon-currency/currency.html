@@ -1,0 +1,3 @@
+<span #slot style="display:none"><ng-content></ng-content></span>
+<span class="mon-currency">{{ currencyLabel() }}</span>
+<span class="mon-amount" [style.--mont-currency-font-size]="fontSize">{{ displayValue }}</span>

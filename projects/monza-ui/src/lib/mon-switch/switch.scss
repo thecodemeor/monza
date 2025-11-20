@@ -1,0 +1,84 @@
+@use "styles" as mon;
+
+:host {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &.disabled {
+        opacity: .6;
+        filter: grayscale(100);
+        cursor: unset;
+    }
+}
+
+.mon-switch {
+    /* Geometry */
+    --mon-switch-w: 2.75rem;
+    --mon-switch-h: 1.5rem;
+    --mon-switch-thumb: calc(var(--mon-switch-h) - 0.4rem);
+    --mon-switch-pad: 0.2rem;
+
+    /* Motion + state */
+    --thumb-distance: calc(var(--mon-switch-w) - var(--mon-switch-thumb) - (var(--mon-switch-pad) * 2));
+    --thumb-x: 0;
+
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    outline: none;
+    @include mon.root-button();
+
+    &__track {
+        position: relative;
+        display: flex;
+        width: var(--mon-switch-w);
+        height: var(--mon-switch-h);
+        border-radius: var(--mon-radius-pill);
+        background: color-mix(in srgb, var(--mon-color-text) 35%, white);
+        box-shadow: inset 0 0 0 0.1rem color-mix(in srgb, var(--mon-color-text) 50%, white);
+        align-items: center;
+        transition:
+        background var(--mon-duration) var(--mon-ease),
+        box-shadow var(--mon-duration) var(--mon-ease);
+    }
+
+    &__thumb {
+        position: absolute;
+        top: var(--mon-switch-pad);
+        left: var(--mon-switch-pad);
+        width: var(--mon-switch-thumb);
+        height: var(--mon-switch-thumb);
+        border-radius: 999px;
+        background: var(--mon-color-surface);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+        will-change: transform;
+        transform: translateX(var(--thumb-x)) scale(1);
+        transition:
+        transform var(--mon-duration) var(--mon-ease),
+        background var(--mon-duration) var(--mon-ease),
+        box-shadow var(--mon-duration) var(--mon-ease);
+    }
+
+    /* Subtle press feedback without layout shift */
+    &:active .mon-switch__thumb {
+        transform: translateX(var(--thumb-x)) scale(.96);
+    }
+
+    /* Checked state */
+    &[aria-checked="true"] {
+        --thumb-x: var(--thumb-distance);
+    }
+    &[aria-checked="true"] .mon-switch__track {
+        background: color-mix(in srgb, var(--mon-switch-color) 50%, white);
+        box-shadow: inset 0 0 0 0.1rem color-mix(in srgb, var(--mon-switch-color) 70%, white);
+    }
+
+    /* Focus ring */
+    &:focus-visible .mon-switch__track {
+        box-shadow:
+        0 0 0 3px color-mix(in srgb, var(--mon-color-primary) 50%, transparent),
+        inset 0 0 0 1px color-mix(in srgb, var(--mon-color-primary) 50%, white);
+    }
+}

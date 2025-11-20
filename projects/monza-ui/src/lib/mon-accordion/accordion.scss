@@ -1,0 +1,11 @@
+@use "styles" as mon;
+
+:host {
+    display: block;
+}
+
+.mon-accordion {
+    display: flex;
+    padding: 0 0.2rem;
+    flex-direction: column;
+}

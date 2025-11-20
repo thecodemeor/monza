@@ -1,0 +1,70 @@
+@use "styles" as mon;
+
+:host {
+    --mon-btnIcon-space: 0.2rem;
+
+    display: inline-block;
+}
+
+
+/* --------------------------
+   Button Base Styles
+-------------------------- */
+button.mon-btnIcon {
+    @include mon.root-button();
+    position: relative;
+    width: fit-content;
+    min-width: 1rem;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--mon-radius-pill);
+    font-weight: var(--mon-font-weight-semibold);
+    text-align: center;
+    transition: all var(--mon-duration) var(--mon-ease);
+    cursor: pointer;
+
+    &:active {
+        transform: scale(0.95);
+    }
+    &:focus-visible {
+        outline: solid 2px transparent;
+        outline-offset: 2px;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, .35);
+    }
+    &:disabled {
+        opacity: 0.3;
+        filter: grayscale(1);
+        pointer-events: none;
+    }
+}
+
+/* --------------------------
+    Model Styles
+-------------------------- */
+/* Tonal */
+.mon-btnIcon--tonal {
+    padding: var(--mon-btnIcon-space);
+    background: color-mix(in srgb, var(--mon-btnIcon-bg, var(--mon-color-primary)) 20%, white);
+    color: var(--mon-btnIcon-bg, var(--mon-color-primary));
+    border: none;
+    &:hover:not(:disabled) { background: color-mix(in srgb, var(--mon-btnIcon-bg, var(--mon-color-primary)) 30%, white);}
+}
+
+/* Glassmorphism */
+.mon-btnIcon--glass {
+    padding: var(--mon-btnIcon-space);
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur( 50px ); // frosted blur
+    -webkit-backdrop-filter: blur( 50px ); // for Safari
+    color: var(--mon-btnIcon-bg, var(--mon-color-primary));
+    border: solid 0.1rem var(--mon-color-border-glassmorphism);
+    &:hover:not(:disabled) { background: color-mix(in srgb, var(--mon-btnIcon-bg, var(--mon-color-primary)) var(--mon-fade-hover), white);}
+}
+
+/* Text */
+.mon-btnIcon--text {
+    padding: var(--mon-btnIcon-space, var(--mon-space-1));
+    background: transparent;
+    color: var(--mon-btnIcon-bg, var(--mon-color-primary));
+    border: none;
+    &:hover:not(:disabled) { background: color-mix(in srgb, var(--mon-btnIcon-bg, var(--mon-color-primary))  var(--mon-fade-hover), white);}
+}

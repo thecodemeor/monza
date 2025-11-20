@@ -1,0 +1,215 @@
+@use "styles" as mon;
+
+:host {
+    --mon-datepicker-border-size: 0.1rem;
+    --mon-datepicker-outline-size: 0.2rem;
+
+    display: inline-flex;
+    width: 15rem;
+    padding: 0 var(--mon-datepicker-outline-size);
+    flex-direction: column;
+    &.disabled {
+        opacity: .5;
+        filter: grayscale(100);
+        cursor: unset;
+    }
+}
+
+.mon-datepicker {
+    --mon-datepicker-gap: var(--mon-space-1);
+    --mon-datepicker-px: var(--mon-space-3);
+    --mon-datepicker-corner: var(--mon-radius-default);
+
+    position: relative;
+    width: 100%;
+
+    /* top label */
+    &__label {
+        margin: 0 0 .2rem var(--mon-space-3);
+        color: color-mix(in srgb, var(--mon-color-text) 80%, white);
+        @include mon.mon-typography('label-sm');
+    }
+
+    &__trigger {
+        @include mon.root-button();
+        @include mon.root-border();
+        position: relative;
+        display: flex;
+        width: 100%;
+        min-height: 2.5rem;
+        padding: 0 var(--mon-space-1) 0 var(--mon-space-3);
+        border-radius: var(--mon-datepicker-corner);
+        background: var(--mon-color-surface);
+        justify-content: space-between;
+        align-items: center;
+        transition: all var(--mon-duration) var(--mon-ease);
+        
+        &.focus {
+            border-color: var(--mon-color-primary);
+            outline: solid var(--mon-datepicker-outline-size) color-mix(in srgb, var(--mon-color-primary)  var(--mon-fade-outline), white);
+        }
+        
+        mon-icon {
+            transition: all var(--mon-duration) var(--mon-ease);
+        }
+    }
+
+    &--fill .mon-datepicker__trigger {
+        border: none;
+        background: color-mix(in srgb, var(--mon-color-primary) 10%, white);
+    }
+
+    &__value {
+        color: var(--mon-color-text);
+        @include mon.mon-typography('default');
+    }
+
+    /* Calendar dropdown panel */
+    &__panel {
+        @include mon.root-shadow(2);
+        @include mon.root-border();
+        position: absolute;
+        left: 0;
+        display: flex;
+        margin-top: .5rem;
+        padding: var(--mon-space-1);
+        background: var(--mon-color-surface);
+        border-radius: var(--mon-datepicker-corner);
+        border-width: 1px;
+        overflow-y: auto;
+        z-index: 10;
+        transform-origin: 50% -5%;
+        transform: scaleY(0);
+        flex-direction: column;
+        gap: var(--mon-space-1);
+        transition: all var(--mon-duration-fast);
+        &.dropdown { transform: scaleY(1);}
+    }
+
+    .mon-calendar {
+        display: flex;
+        width: 18rem;
+        flex-direction: column;
+        gap: var(--mon-space-2);
+
+        &-header {
+            --mon-calendar-header-gap: 0.2rem;
+
+            display: flex;
+            height: auto;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--mon-space-1);
+
+            &-pick_month {
+                height: 100%;
+                @include mon.mon-typography('label-md');
+            }
+            &-pick_year {
+                display: flex;
+                height: 3.5rem;
+                aspect-ratio: 1.2 / 1;
+                padding: var(--mon-calendar-header-gap);
+                border: solid 1px var(--mon-color-border);
+                border-radius: var(--mon-radius-sm);
+                background-color: var(--mon-color-surface);
+                box-shadow: rgba(255, 255, 255, 0.8) 2px 2px 0px -1px inset, rgba(192, 192, 192, 0.35) -2px -2px 4px 0px inset;
+                flex-direction: column;
+                align-items: center;
+                gap: var(--mon-calendar-header-gap);
+                transition: all 0.3s;
+                cursor: pointer;
+                @include mon.mon-typography('label-sm');
+
+                &:hover {
+                    scale: 1.01;
+                    &.mon-calendar-header-year_label { scale: 1.05;}
+                }
+            }
+            &-card {
+                flex: 1 1 0;
+                width: 100%;
+                border-radius:
+                    calc(var(--mon-radius-sm) -  var(--mon-calendar-header-gap))
+                    calc(var(--mon-radius-sm) -  var(--mon-calendar-header-gap))
+                    0.3rem 0.3rem;
+                background-color: var(--mon-color-primary);
+            }
+            &-year_label {
+                display: flex;
+                width: 100%; height: 1.8rem;
+                justify-content: center;
+                align-items: center;
+                font-weight: var(--mon-font-weight-medium);
+                color: var(--mon-color-text);
+                transition: all 0.3s;
+                @include mon.mon-typography('label-sm');
+            }
+        }
+
+        &-month_nav, &-year_nav {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--mon-space-2);
+
+            &-label {
+                font-weight: var(--mon-font-weight-semibold);
+            }
+        }
+
+        &-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            margin-top: var(--mon-space-1);
+            color: var(--mon-color-text-muted);
+            text-align: center;
+            gap: var(--mon-space-1);
+            @include mon.mon-typography('label-sm');
+        }
+
+        &-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: var(--mon-space-1);
+            @include mon.mon-typography('default');
+
+            &-cell {
+                position: relative;
+                display: inline-flex;
+                height: 2rem;
+                border: none;
+                color: var(--mon-color-text, #111827);
+                background: transparent;
+                border-radius: var(--mon-radius-sm);
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                transition: all var(--mon-duration);
+                @include mon.mon-typography('default');
+
+                &:hover:not(.mon-calendar-days-cell--selected) {
+                    background: color-mix(in srgb, var(--mon-color-primary)  var(--mon-fade-hover), white);
+                }
+
+                &--outside { color: color-mix(in srgb, var(--mon-color-text)  var(--mon-fade-placeholder), white);}
+                &--today {
+                    box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--mon-color-danger)  var(--mon-fade-border), white);
+                    border-radius: var(--mon-radius-sm);
+                }
+                &--selected {
+                    color: var(--mon-color-surface);
+                    background: var(--mon-color-primary);
+                }
+            }
+        }
+        &-months, &-years {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--mon-space-1);
+        }
+    }
+}
+
+

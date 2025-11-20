@@ -1,0 +1,18 @@
+@use "styles" as mon;
+
+:host {
+    display: inline-flex;
+}
+
+.mon-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--mon-space-2);
+
+    &--row {
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--mon-space-3);
+    }
+}

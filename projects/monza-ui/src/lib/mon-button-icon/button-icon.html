@@ -1,0 +1,11 @@
+<button
+    [class]="hostClasses"
+
+    [style.--mon-btnIcon-bg]="btnColor"
+    [style.--mon-btnIcon-padding]="btnPadding"
+    [disabled]="disabled"
+    type="button"
+>
+    <ng-content></ng-content>
+    <span class="btnRipple"></span>
+</button>

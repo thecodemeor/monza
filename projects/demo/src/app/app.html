@@ -1,0 +1,496 @@
+<style>
+  div.p-2 {
+    display: flex;
+    width: 100%;
+    outline: solid 1.5px black;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+  }
+</style>
+
+<div class="p-4  flex-col gap-2">
+  <h2>Monza Demo</h2>
+
+  <div class="p-2">
+   <div class="content">
+  @for (item of pageItems; track item) {
+    <div>{{ item }}</div>
+  }
+
+  <mon-pagination
+    [length]="totalItems"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    [pageSizeOptions]="[5, 10, 25, 50]"
+    (pageChange)="onPageChange($event)">
+  </mon-pagination>
+</div>
+
+
+  </div>
+
+  <div class="p-2">
+    <mon-datepicker
+  [(value)]="selectedDate"
+  [firstDayOfWeek]="1"
+  placeholder="Pick a date"
+></mon-datepicker>
+
+  </div>
+
+  <div class="p-2">
+    <h3>Accordion</h3>
+
+<!-- settings.html -->
+<mon-accordion>
+  <mon-accordion-item>
+    <div monAccordionHeader>Profile</div>
+    <p>Update your profile details.</p>
+  </mon-accordion-item>
+
+  <mon-accordion-item>
+    <div monAccordionHeader>Security</div>
+    <p>Manage passwords and devices.</p>
+  </mon-accordion-item>
+
+  <mon-accordion-item>
+    <div monAccordionHeader>Security</div>
+    <p>Manage passwords and devices.</p>
+  </mon-accordion-item>
+
+  <mon-accordion-item>
+    <div monAccordionHeader>Security</div>
+    <p>Manage passwords and devices.</p>
+  </mon-accordion-item>
+
+  <mon-accordion-item>
+    <div monAccordionHeader>Security</div>
+    <p>Manage passwords and devices.</p>
+  </mon-accordion-item>
+</mon-accordion>
+
+
+
+
+
+
+  </div>
+
+  <div class="p-2">
+    <h3>Button icon</h3>
+    <mon-button-icon model="tonal">
+      <mon-icon size="24">menu_dots_circle</mon-icon>
+    </mon-button-icon>
+  </div>
+
+  <div class="p-2">
+    <h3>progress</h3>
+    <mon-progress model="cardio" color="primary"></mon-progress>
+  </div>
+
+  <div class="p-2">
+    <h3>Icons</h3>
+    <div class="grid">
+      @for(icon of monzaIcons; track icon){
+        <mon-icon size="50" color="#db4dff">{{ icon }}</mon-icon>
+      }
+    </div>
+  </div>
+    <div class="p-2">
+    <h3>Icons</h3>
+       <mon-icon size="20" color="#004050">home</mon-icon>
+  </div>
+
+
+  <div class="p-2">
+    <h3>Select</h3>
+    <mon-select label="Fruit" placeholder="Choose one">
+      <mon-option value="apple">Apple</mon-option>
+      <mon-option value="orange" disabled>Orange</mon-option>
+      <mon-option value="banana">Banana</mon-option>
+    </mon-select>
+
+    <mon-input
+      label="Full name"
+      placeholder="Your Name"
+      helper="As per your NRIC"
+      [(ngModel)]="name">
+    </mon-input>
+
+  </div>
+  <div class="p-2">
+    <h3>Switch</h3>
+
+    <mon-switch color="success"></mon-switch>
+<mon-switch></mon-switch>
+<mon-switch [ngModel]="true" [disabled]="true"></mon-switch>
+
+  </div>
+
+  <div class="p-2" style="display:block">
+  <h3>Input</h3>
+
+  <mon-input
+    label="Full name"
+    placeholder="Your Name"
+    helper="As per your NRIC"
+    [(ngModel)]="name"
+    clearable
+    model="outline">
+  </mon-input>
+  <mon-input
+    label="Full name"
+    placeholder="Your Name"
+    helper="As per your NRIC"
+    [(ngModel)]="name"
+    model="outline"
+    disabled>
+  </mon-input>
+
+  <div class="mt-2"></div>
+
+  <mon-input
+    label="Full name"
+    placeholder="Your Name"
+    helper="As per your NRIC"
+    [(ngModel)]="name"
+    clearable
+    model="fill">
+  </mon-input>
+  <mon-input
+    label="Full name"
+    placeholder="Your Name"
+    helper="As per your NRIC"
+    [(ngModel)]="name"
+    model="fill"
+    disabled>
+  </mon-input>
+
+</div>
+
+  <div class="p-2" style="display:block">
+    <h3>Radio</h3>
+
+    <!-- <mon-radio-group [(ngModel)]="payment" orientation="horizontal">
+      <mon-radio value="card" color="primary">Card</mon-radio>
+      <mon-radio value="bank" color="success">Bank Transfer</mon-radio>
+      <mon-radio value="cash" color="warn" disabled>Cash</mon-radio>
+    </mon-radio-group> -->
+
+    <p class="mt-2">Selected: {{ payment }} {{ temp }}</p>
+
+    <mon-divider>Sizes</mon-divider>
+    <mon-radio-group [(ngModel)]="test" [disabled]="temp">
+      <mon-radio value="sm" size="sm">Small</mon-radio>
+      <mon-radio value="md" size="md">Medium</mon-radio>
+      <mon-radio value="lg" size="lg">Large</mon-radio>
+    </mon-radio-group>
+  </div>
+
+  <div class="p-2" style="flex-direction: column;">
+    <mon-checkbox-group orientation="vertical" [(ngModel)]="selectedItems">
+      <mon-checkbox [value]="'reports'">Reports</mon-checkbox>
+      <mon-checkbox [value]="'exports'">Exports</mon-checkbox>
+      <mon-checkbox [value]="'alerts'">Alerts</mon-checkbox>
+      <mon-checkbox [value]="'beta'">Beta</mon-checkbox>
+    </mon-checkbox-group>
+    <p>Selected: {{ selectedItems }}</p>
+  </div>
+  <div class="p-2">
+    <h3>Check</h3>
+      <mon-checkbox color="primary" size="sm" [checked]="true" labelPosition="start">Accept terms</mon-checkbox>
+      <mon-checkbox color="success">Syncing…</mon-checkbox>
+      <mon-checkbox color="warn" size="lg" [disabled]="true">Disabled</mon-checkbox>
+  </div>
+@if(true){
+  <div class="p-2">
+    <mon-card model="fill" color="success">
+      <mon-card-header>Static Card</mon-card-header>
+      <p>This is a simple card with header and body.</p>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+    <mon-card model="fill" color="danger" style="height: 10rem;">
+      <mon-card-header>Static Card</mon-card-header>
+      <mon-card-body>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+      </mon-card-body>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+    <mon-card model="fill" color="primary" advance>
+      <mon-card-header>Static Card</mon-card-header>
+      <mon-card-body>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+      </mon-card-body>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+    <mon-card model="fill" color="warn">
+      <mon-card-header>Static Card</mon-card-header>
+      <mon-divider>Content</mon-divider>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+    <mon-card model="fill" loading>
+      <mon-card-header>Static Card</mon-card-header>
+      <p>This is a simple card with header and body.</p>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+  </div>
+}
+  <div class="p-2">
+    <mon-card model="outline">
+      <mon-card-header>Static Card</mon-card-header>
+      <mon-divider>Content</mon-divider>
+      <p>This is a simple card with header and body.</p>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+    <mon-card model="outline" color="danger" style="height: 10rem;">
+      <mon-card-header>Static Card</mon-card-header>
+      <mon-card-body>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+      </mon-card-body>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+    <mon-card model="outline" color="primary" advance>
+      <mon-card-header>Static Card</mon-card-header>
+      <p>This is a simple card with header and body.</p>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+    <mon-card model="outline" color="warn">
+      <mon-card-header>Static Card</mon-card-header>
+      <mon-divider>Content</mon-divider>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+    <mon-card model="outline" loading>
+      <mon-card-header>Static Card</mon-card-header>
+      <p>This is a simple card with header and body.</p>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+  </div>
+
+  <div class="p-2">
+    <mon-card model="flavor">
+      <mon-card-header>Static Card</mon-card-header>
+      <p>This is a simple card with header and body.</p>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+    <mon-card model="flavor" color="danger" style="height: 10rem;">
+      <mon-card-header>Static Card</mon-card-header>
+      <mon-card-body>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+      </mon-card-body>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+    <mon-card model="flavor" color="primary" advance>
+      <mon-card-header>Static Card</mon-card-header>
+      <p>This is a simple card with header and body.</p>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+    <mon-card model="flavor" color="warn">
+      <mon-card-header>Static Card</mon-card-header>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+    <mon-card model="flavor" loading>
+      <mon-card-header>Static Card</mon-card-header>
+      <p>This is a simple card with header and body.</p>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+  </div>
+
+  <div class="p-2">
+    <mon-card model="elevated" color="success">
+      <p>This is a simple card with header and body.</p>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+    <mon-card model="elevated" color="danger" style="height: 10rem;">
+      <mon-card-header>Static Card</mon-card-header>
+      <mon-card-body>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+        <p>This is a simple card with header and body.</p>
+      </mon-card-body>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+    <mon-card model="elevated" color="primary" advance>
+      <mon-card-header>Static Card</mon-card-header>
+      <p>This is a simple card with header and body.</p>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+    <mon-card model="elevated" color="warn">
+      <mon-card-header>Static Card</mon-card-header>
+      <mon-divider>Content</mon-divider>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+    <mon-card model="elevated" loading>
+      <mon-card-header>Static Card</mon-card-header>
+      <p>This is a simple card with header and body.</p>
+      <mon-card-footer>Footer area</mon-card-footer>
+    </mon-card>
+  </div>
+
+
+  <div class="p-2">
+    <h3>Badge</h3>
+    <mon-badge>Default</mon-badge>
+    <mon-badge color="primary">New</mon-badge>
+    <mon-badge color="success">Live</mon-badge>
+    <mon-badge color="warn">9</mon-badge>
+    <mon-badge color="danger" pulse>10</mon-badge>
+
+    <mon-badge color="success" dot></mon-badge>
+    <mon-badge color="warn" pulse dot></mon-badge>
+    <mon-badge color="danger" dot></mon-badge>
+
+    <mon-badge color="primary" icon="pending" pulse></mon-badge>
+    <mon-badge color="success" icon="check">Accepted</mon-badge>
+
+    <mon-button color="primary" variant="fill" pill>
+      <mon-badge color="danger" notification pulse>100</mon-badge>
+      Primary
+    </mon-button>
+
+  </div>
+  <div class="p-2">
+    <h3>Currency</h3>
+    <mon-currency currency="MYR" style="color: blueviolet;">10</mon-currency>
+    <mon-currency currency="USD">1.5</mon-currency>
+    <mon-currency currency="USD">2.09</mon-currency>
+
+  </div>
+  <div class="p-2">
+    <h3>Currency Symbol</h3>
+      <mon-currency currency="USD" symbol>10000</mon-currency>
+      <mon-currency currency="MYR" symbol>45800</mon-currency>
+      <mon-currency currency="RM" symbol>46900</mon-currency>
+  </div>
+
+  <div class="p-2" style="display: block;">
+    <h3>Divider</h3>
+    <mon-divider></mon-divider>
+    <mon-divider dashed>OR</mon-divider>
+    <mon-divider align="start">Step 1</mon-divider>
+    <mon-divider align="end">Completed</mon-divider>
+    <mon-divider color="primary">Primary Section</mon-divider>
+  </div>
+  <div style="display: flex; align-items: center; gap: 1rem;">
+    <span>Left side</span>
+    <mon-divider orientation="vertical"></mon-divider>
+    <span>Right side</span>
+  </div>
+
+  <div class="p-2">
+    <h3>Fill</h3>
+    <mon-button color="primary" model="fill" pill>Primary</mon-button>
+    <mon-button color="success" model="fill" pill>Success</mon-button>
+    <mon-button color="warn" model="fill" pill>Warn</mon-button>
+    <mon-button color="danger" model="fill" pill>Danger</mon-button>
+    <mon-button color="default" model="fill" pill disabled>Disabled</mon-button>
+    <mon-button color="default" model="fill" size="sm" pill>Default</mon-button>
+  </div>
+
+  <div class="p-2">
+    <h3>Outline</h3>
+    <mon-button color="primary" model="outline" pill>Primary</mon-button>
+    <mon-button color="success" model="outline" pill>Success</mon-button>
+    <mon-button color="warn" model="outline" pill>Warn</mon-button>
+    <mon-button color="danger" model="outline" pill>Danger</mon-button>
+    <mon-button color="default" model="outline" pill disabled>Disabled</mon-button>
+    <mon-button color="default" model="outline" size="sm" pill>Default</mon-button>
+  </div>
+
+  <div class="p-2">
+    <h3>Tonal</h3>
+    <mon-button color="primary" model="tonal" pill>Primary</mon-button>
+    <mon-button color="success" model="tonal" pill>Success</mon-button>
+    <mon-button color="warn" model="tonal" pill>Warn</mon-button>
+    <mon-button color="danger" model="tonal" pill>Danger</mon-button>
+    <mon-button color="default" model="tonal" pill disabled>Disabled</mon-button>
+    <mon-button color="default" model="tonal" size="sm" pill>Default</mon-button>
+  </div>
+
+  <div class="p-2">
+    <h3>Flavor</h3>
+    <mon-button color="primary" model="flavor" pill>Primary</mon-button>
+    <mon-button color="success" model="flavor" pill>Success</mon-button>
+    <mon-button color="warn" model="flavor" pill>Warn</mon-button>
+    <mon-button color="danger" model="flavor" pill>Danger</mon-button>
+    <mon-button color="default" model="flavor" pill disabled>Disabled</mon-button>
+    <mon-button color="default" model="flavor" size="sm" pill>Default</mon-button>
+  </div>
+
+  <div class="p-2">
+    <h3>Elevated</h3>
+    <mon-button color="primary" model="elevated" pill>Primary</mon-button>
+    <mon-button color="success" model="elevated" pill>Success</mon-button>
+    <mon-button color="warn" model="elevated" pill>Warn</mon-button>
+    <mon-button color="danger" model="elevated" pill>Danger</mon-button>
+    <mon-button color="default" model="elevated" pill disabled>Disabled</mon-button>
+    <mon-button color="default" model="elevated" size="sm" pill>Default</mon-button>
+    
+  </div>
+
+  <div class="p-2">
+    <h3>Text</h3>
+    <mon-button color="primary" model="text" pill>Primary</mon-button>
+    <mon-button color="success" model="text" pill>Success</mon-button>
+    <mon-button color="warn" model="text" pill>Warn</mon-button>
+    <mon-button color="danger" model="text" pill>Danger</mon-button>
+    <mon-button color="default" model="text" pill disabled>Disabled</mon-button>
+    <mon-button color="default" model="text" size="sm" pill>Default</mon-button>
+  </div>
+
+  <div class="p-2" style="background-image: url('https://img.freepik.com/free-photo/animal-lizard-nature-multi-colored-close-up-generative-ai_188544-9072.jpg?semt=ais_hybrid&w=740&q=80'); background-position: center; background-size: cover;">
+    <h3>Glass</h3>
+    <mon-button color="primary" model="glass">Primary</mon-button>
+    <mon-button color="success" model="glass">Success</mon-button>
+    <mon-button color="warn" model="glass">Warn</mon-button>
+    <mon-button color="danger" model="glass">Danger</mon-button>
+    <mon-button color="default" model="glass" disabled>Disabled</mon-button>
+    <mon-button color="default" model="glass" size="sm">Default</mon-button>
+  </div>
+
+  <div class="p-2 flex-col" style="align-items: start;">
+    <h3>Others</h3>
+    <mon-button color="primary" model="tonal">Default</mon-button>
+    <mon-button color="primary" model="tonal" full>Full</mon-button>
+    <span class="flex flex-row gap-2 w-full">
+      <mon-button color="primary" model="tonal" size="xl"></mon-button>
+      <mon-button color="primary" model="tonal" size="lg">The fox jump on the lazy chicken</mon-button>
+      <mon-button color="primary" model="tonal" size="md">MD<br>XL</mon-button>
+      <mon-button color="primary" model="tonal" size="sm">SM</mon-button>
+    </span>
+  </div>
+
+  <div class="p-2 flex-col" style="align-items: start;">
+    <h1>Monza Heading One</h1>
+    <h2>Monza Heading Two</h2>
+    <h3>Monza Heading Three</h3>
+    <h4>Monza Heading Four</h4>
+    <h5>Monza Heading Five</h5>
+    <h6>Monza Heading Six</h6>
+    <p>Monza para</p>
+  </div>
+</div>

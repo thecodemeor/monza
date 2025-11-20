@@ -1,0 +1,16 @@
+:host {
+    display: inline;
+    svg { width: auto; height: fit-content;}
+}
+.mon-icon {
+    position: relative;
+    display: inline-flex;
+    width: var(--mon-icon-size);
+    height: var(--mon-icon-size);
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    font-size: var(--mon-icon-size);
+    line-height: var(--mon-icon-size);
+    fill: currentColor;
+}
