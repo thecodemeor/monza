@@ -11,24 +11,25 @@ but now *you* can enjoy it too.
 Use it with:
 
 - Monza UI Components  
-- Angular / React / Vue  
-- HTML templates  
-- Or any SCSS-based project  
+- Angular / React / Vue projects  
+- Plain HTML + SCSS setups  
+- Any place where SCSS is allowed to shine
 
-Monza Styles gives you:
+> **Important:** before using any of the mixins or relying on the CSS variables,  
+> make sure you import the toolkit in your global SCSS:
+>
+> ```scss
+> @use "monza-styles/styles" as mon;
+> ```
 
-- ✨ Design tokens  
-- 🎨 Color palettes  
-- 🔧 Utility classes  
-- 🧩 Mixins  
-- ⚡ Runtime theming  
+I’ve listed all the main selectors and mixins I’ve prepared below,  
+so you can quickly see what’s available and how to use it.
 
 ---
 
+
 ## 🎨 **Color Palette List**
-
 These are the built-in palettes, each with shades **50 → 950**:
-
 - **red**
 - **rose**
 - **violet**
@@ -37,8 +38,8 @@ These are the built-in palettes, each with shades **50 → 950**:
 - **amber**
 - **silver**
 
-## 🎨 **Class List**
 
+## 🎨 **Class List**
 ### **Spacing Utilities**
 | Selector | Declarations                             |
 |----------|------------------------------------------|
@@ -58,7 +59,7 @@ These are the built-in palettes, each with shades **50 → 950**:
 | .py-$    | padding-top: $rem, padding-bottom: $rem  |
 | .gap-$   | gap: $rem                                |
 | .corner-$| border-raidus: $rem                      |
-*You can replace **$** with numbers from **1 - 10***
+> You can replace **$** with numbers from **0 – 10** based on the spacing scale.
 
 ### **Flexbox Utilities**
 | Selector           | Declarations                   |
@@ -93,7 +94,12 @@ These are the built-in palettes, each with shades **50 → 950**:
 ---
 
 ## 🎨 **Mixin Usage**
+On top of the utility classes, I also prepared a set of mixins so you can style your own components while still matching the Monza look and feel.
 
+> 🧩 Reminder: before using these, don’t forget:
+> ```scss
+> @use "monza-styles/styles" as mon;
+> ```
 ```scss
 @include mon.mon-typography('title-lg');
 @include mon.mon-typography('title-md');
