@@ -1,63 +1,36 @@
-# MonzaStyles
+<p align="center">
+  <img src="./banner.png" width="850" alt="Monza Styles Banner"/>
+</p>
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.0.
+# 🎨 Monza Styles
 
-## Code scaffolding
+**Monza Styles** is a lightweight SCSS package containing **design tokens**,  
+**color palettes**, **utilities**, and **mixins** used across the Monza Design System.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+It provides the foundation for consistent UI styling across all Monza UI components  
+and can also be used in any standalone Angular/React/Vue project.
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🎨 Color Palette Names
 
-```bash
-ng generate --help
-```
+The color system includes **7 base palettes**, each with **50–950 scale values**.
 
-## Building
+| Palette | Example Shades |
+|--------|----------------|
+| **red** | `red-50 … red-950` |
+| **rose** | `rose-50 … rose-950` |
+| **violet** | `violet-50 … violet-950` |
+| **malibu** (default primary) | `malibu-50 … malibu-950` |
+| **chartreuse** (default success) | `chartreuse-50 … chartreuse-950` |
+| **amber** (default warning) | `amber-50 … amber-950` |
+| **silver** (gray scale) | `silver-50 … silver-950` |
 
-To build the library, run:
+### How to access colors (inside tokens)
+```scss
+@use "monza-styles/tokens" as mon;
 
-```bash
-ng build monza-styles
-```
-
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
-
-### Publishing the Library
-
-Once the project is built, you can publish your library by following these steps:
-
-1. Navigate to the `dist` directory:
-   ```bash
-   cd dist/monza-styles
-   ```
-
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+.my-box {
+  background: var(--mon-color-primary);
+  color: var(--mon-color-text);
+}
