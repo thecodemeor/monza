@@ -4,33 +4,45 @@
 
 # 🎨 Monza Styles
 
-**Monza Styles** is a lightweight SCSS package containing **design tokens**,  
-**color palettes**, **utilities**, and **mixins** used across the Monza Design System.
+Welcome to **Monza Styles** — my lightweight SCSS toolkit designed to make styling fun, fast, and consistent.  
+I built it for myself at first (because I got tired of rewriting spacing, colors, and typography),  
+but now *you* can enjoy it too ✨
 
-It provides the foundation for consistent UI styling across all Monza UI components  
-and can also be used in any standalone Angular/React/Vue project.
+Use it with:
+
+- Monza UI Components 💛  
+- Angular / React / Vue  
+- HTML templates  
+- Or any SCSS-based project  
+
+Monza Styles gives you:
+
+✨ Design tokens  
+🎨 Color palettes  
+🔧 Utility classes  
+🧩 Mixins  
+⚡ Runtime theming  
+
+…all in one neat package.
 
 ---
 
-## 🎨 Color Palette Names
+## 🎨 **Color Palette List**
 
-The color system includes **7 base palettes**, each with **50–950 scale values**.
+These are the built-in palettes, each with shades **50 → 950**:
 
-| Palette | Example Shades |
-|--------|----------------|
-| **red** | `red-50 … red-950` |
-| **rose** | `rose-50 … rose-950` |
-| **violet** | `violet-50 … violet-950` |
-| **malibu** (default primary) | `malibu-50 … malibu-950` |
-| **chartreuse** (default success) | `chartreuse-50 … chartreuse-950` |
-| **amber** (default warning) | `amber-50 … amber-950` |
-| **silver** (gray scale) | `silver-50 … silver-950` |
+- **red**
+- **rose**
+- **violet** (great for dark mode accents)
+- **malibu** *(Default primary blue)*
+- **chartreuse**
+- **amber**
+- **silver** *(neutral grayscale)*
 
-### How to access colors (inside tokens)
+Example usage:
+
 ```scss
-@use "monza-styles/tokens" as mon;
-
-.my-box {
+.my-card {
   background: var(--mon-color-primary);
-  color: var(--mon-color-text);
+  border-color: var(--mon-color-border);
 }
