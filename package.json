@@ -1,8 +1,9 @@
 {
   "name": "monza",
   "version": "1.0.0",
-  "description": "Monza UI Angular component library",
+  "description": "Monza — UI Components + SCSS Tokens & Utilities",
   "author": "thecodemeor",
+  "keywords": ["angular", "scss", "design-system", "ui-library"],
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -22,7 +23,7 @@
       }
     ]
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/common": "^20.1.0",
     "@angular/compiler": "^20.1.0",
@@ -50,5 +51,10 @@
     "ng-packagr": "^20.3.0",
     "typescript": "~5.8.2",
     "typescript-eslint": "8.46.3"
+  },
+  "sideEffects": false,
+  "exports": {
+    "./components": "./fesm2022/monza-components.mjs",
+    "./styles": "./styles/index.scss"
   }
 }

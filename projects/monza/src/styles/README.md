@@ -32,11 +32,18 @@ so you can quickly see what’s available and how to use it.
 These are the built-in palettes, each with shades **50 → 950**:
 - **red**
 - **rose**
+- **fuchsia**
 - **violet**
 - **malibu**
+- **teal**
 - **chartreuse**
+- **emerald**
+- **lemon**
+- **gold**
 - **amber**
+- **tangerine**
 - **silver**
+- **gray**
 
 
 ## 🎨 **Class List**
@@ -96,7 +103,7 @@ These are the built-in palettes, each with shades **50 → 950**:
 ## 🎨 **Mixin Usage**
 On top of the utility classes, I also prepared a set of mixins so you can style your own components while still matching the Monza look and feel.
 
-> 🧩 Reminder: before using these, don’t forget:
+> Reminder: before using these, don’t forget:
 > ```scss
 > @use "monza-styles/styles" as mon;
 > ```
@@ -116,3 +123,6 @@ On top of the utility classes, I also prepared a set of mixins so you can style 
 @include mon.root-shadow(1);
 @include mon.root-shadow(2);
 @include mon.root-shadow(3);
+```
+
+---

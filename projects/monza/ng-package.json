@@ -1,0 +1,11 @@
+{
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "styleIncludePaths": [
+      "projects/monza/src/styles"
+    ]
+  },
+  "assets": [
+    "src/styles"
+  ]
+}

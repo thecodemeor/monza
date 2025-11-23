@@ -1,0 +1,29 @@
+{
+  "name": "monza-styles",
+  "version": "1.0.0",
+  "description": "Lightweight SCSS design tokens, utilities, and theming system for the Monza Design System.",
+  "author": "thecodemeor",
+  "license": "MIT",
+  "keywords": [
+    "scss",
+    "sass",
+    "design-system",
+    "tokens",
+    "utilities",
+    "theming",
+    "monza"
+  ],
+  "homepage": "https://npmjs.com/package/monza-styles",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOUR_USERNAME/monza-styles.git"
+  },
+
+  "style": "styles.scss",
+  "sass": "styles.scss",
+  "main": "styles.scss",
+
+  "files": [
+    "*.scss"
+  ]
+}

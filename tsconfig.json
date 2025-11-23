@@ -1,28 +1,26 @@
-/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
-/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "compileOnSave": false,
+  
   "compilerOptions": {
+    "baseUrl": "./",             // REQUIRED ✔
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
-    "paths": {
-      "monza-styles": [
-        "./dist/monza-styles"
-      ],
-      "monza-ui": [
-        "./dist/monza-ui"
-      ]
-    },
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "isolatedModules": true,
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+
+    "paths": {
+      "monza": ["./src/public-api.ts"],
+      "monza/styles": ["./src/styles/index.scss"]
+    }
   },
+
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
@@ -30,25 +28,7 @@
     "typeCheckHostBindings": true,
     "strictTemplates": true
   },
+
   "files": [],
-  "references": [
-    {
-      "path": "./projects/monza-styles/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/monza-styles/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/monza-ui/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/monza-ui/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/demo/tsconfig.app.json"
-    },
-    {
-      "path": "./projects/demo/tsconfig.spec.json"
-    }
-  ]
+  "references": []
 }
