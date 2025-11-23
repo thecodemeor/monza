@@ -1,6 +1,7 @@
 <p align="center">
   <img src="./banner-ui.png" width="850" alt="Monza UI Banner"/>
 </p>
+
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 
@@ -27,6 +28,7 @@ Pair it with:
 ## 🧩 Components Available
 
 Below are the UI components currently packaged in **Monza UI**.
+
 More components will be added over time as the design system grows.
 
 
